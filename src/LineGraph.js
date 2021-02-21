@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Line} from "react-chartjs-2";
+import './LineGraph.css'
 
 function LineGraph() {
     const [ graphData, setGraphData]= useState([]);
@@ -11,8 +12,8 @@ function LineGraph() {
         y:20
     },
     {
-        x: 20,
-        y:5
+        x: 12,
+        y: 5
     }
     ]
     const createMockData =()=>{
@@ -55,6 +56,7 @@ function LineGraph() {
                     ]
                 }}
                 options={{
+                    maintainAspectRatio: false,
                     legend:{
                         display: false
                     },
@@ -63,7 +65,22 @@ function LineGraph() {
                         intersect:false
                     },
                     scales: {
+                        xAxes:[
+                            {
+                                type:"time",
+                                time:{
+                                    format: "MM/DD/YY",
+                                    tooltipFormat: "ll",
+                                },
+                                ticks:{
+                                    display: false,
+                                }
+                            },
+                        ],
                         yAxes: [{
+                            gridLines:{
+                                display: false,
+                            },
                             ticks: {
                                 display: false
                             }
