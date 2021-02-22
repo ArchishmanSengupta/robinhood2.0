@@ -55,6 +55,10 @@ function Stats() {
                     <div className="stats__row">
                         {stockData.map((stock) =>(
                             <StatsRow
+                                key={stock.name}
+                                name={stock.name}
+                                openPrice={stock.o}
+                                price={stock.c}
                             />
                         ))}
                     </div>
