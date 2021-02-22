@@ -3,13 +3,38 @@ import React, {useState, useEffect} from 'react';
 import './Stats.css';
 import axios from "axios";
 import StatsRow from './StatsRow.js'
+import {db} from "./firebase";
 
 const TOKEN="c0pamln48v6rvej4h7tg ";
 const BASE_URL = "https://finnhub.io/api/v1/quote";
 const testData=[];
 function Stats() {
-    const [stockData, setStocksData] = useState([]);
+    const [stockData, setStocksData] = useState([])
+    const [myStocks, setmyStocks]= useState([])
 
+    const getMyStocks = () => {
+        db
+        .collection('myStocks')
+        .onSnapshot(snapshot => {
+            console.log(snapshot);
+            // let promises = [];
+            // let tempData = []
+            // snapshot.docs.map((doc) => {
+            // promises.push(getStocksData(doc.data().ticker)
+            // .then(res => {
+            //     tempData.push({
+            //     id: doc.id,
+            //     data: doc.data(),
+            //     info: res.data
+            //     })
+            // })
+            // )})
+            // Promise.all(promises).then(()=>{
+            // setMyStocks(tempData);
+            // })
+        })
+    }
+    
     const getStocksData = (stock)=>{
         return axios.get(`${BASE_URL}${stock}${TOKEN}`).catch((error)=>{
             console.error("Error",error.message);
