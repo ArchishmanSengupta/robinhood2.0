@@ -7,7 +7,7 @@ function Newsfeed() {
             <div className="newsfeed__container">
                 <div className="newsfeed_chartSection">
                     <div className="newsfeed__portfolio">
-                        <h1>$212,678</h1>
+                        <h1>$282,678</h1>
                         <p>+$65.21 (+0.04%) Today
                         </p>
                     </div>
@@ -18,7 +18,7 @@ function Newsfeed() {
             </div>
             
         </div>
-    )
+    );
 }
 
 export default Newsfeed
