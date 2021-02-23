@@ -1,4 +1,7 @@
-# Getting Started with Create React App
+# Robinhood Clone
+
+![screenshot](https://user-images.githubusercontent.com/71402528/108878243-15b5c180-7626-11eb-9d7a-0c059a47928b.png)
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
