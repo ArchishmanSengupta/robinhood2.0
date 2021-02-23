@@ -20,6 +20,7 @@
 }
 .row__intro p{
     font-size: 12px;
+    color: aliceblue;
 }
 
 .row__numbers{
@@ -34,4 +35,7 @@
 
 .row__percentage{
     color: #5AC53B;
+}
+.p{
+    color: thistle;
 }
