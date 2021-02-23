@@ -5,15 +5,15 @@ import './LineGraph.css'
 function LineGraph() {
     const [ graphData, setGraphData]= useState([]);
     const data = [{
-        x:20,
-        y:30
+        x:10,
+        y:10
     },{
-        x:15,
+        x:12,
         y:20
     },
     {
-        x: 12,
-        y: 5
+        x: 15,
+        y: 30
     }
     ]
     const createMockData =()=>{

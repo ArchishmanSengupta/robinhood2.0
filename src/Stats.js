@@ -5,7 +5,7 @@ import axios from "axios";
 import StatsRow from './StatsRow.js'
 import {db} from "./firebase";
 
-const TOKEN="c0pamln48v6rvej4h7tg ";
+const TOKEN="c0qgl1f48v6tskkott80";
 const BASE_URL = "https://finnhub.io/api/v1/quote";
 const testData=[];
 function Stats() {
@@ -16,27 +16,29 @@ function Stats() {
         db
         .collection('myStocks')
         .onSnapshot(snapshot => {
-            console.log(snapshot);
-            // let promises = [];
-            // let tempData = []
-            // snapshot.docs.map((doc) => {
-            // promises.push(getStocksData(doc.data().ticker)
-            // .then(res => {
-            //     tempData.push({
-            //     id: doc.id,
-            //     data: doc.data(),
-            //     info: res.data
-            //     })
-            // })
-            // )})
-            // Promise.all(promises).then(()=>{
-            // setMyStocks(tempData);
-            // })
+            
+            let promises = [];
+            let tempData = [];
+            snapshot.docs.map((doc) => {
+                console.log(doc.data());
+            promises.push(getStocksData(doc.data().ticker)
+            .then(res => {
+                tempData.push({
+                id: doc.id,
+                data: doc.data(),
+                info: res.data
+                })
+            })
+            )})
+            Promise.all(promises).then(()=>{
+            setmyStocks(tempData);
+            })
         })
     }
     
     const getStocksData = (stock)=>{
-        return axios.get(`${BASE_URL}${stock}${TOKEN}`).catch((error)=>{
+        return axios.get(`${BASE_URL}?symbol=${stock}&token=${TOKEN}`)
+        .catch((error)=>{
             console.error("Error",error.message);
         });
     };
@@ -45,13 +47,14 @@ function Stats() {
         const stocksList = ["AAPL", "MSFT", "TSLA", "FB", "BABA", "UBER", "DIS", "SBUX"];
         let tempStocksData=[]
         let promises = [];
+        getMyStocks();
         stocksList.map((stock) => {
             promises.push(
                 getStocksData(stock)
                 .then((res) => {
                 tempStocksData.push({
                     name: stock,
-                    
+                    ...res.data
                 });
         })
         )
@@ -71,21 +74,30 @@ function Stats() {
                 </div>
                 <div className="stats__content">
                     <div className="stats__row">
+                        {myStocks.map((stock) =>(
+                            <StatsRow
+                                key={stock.data.ticker}
+                                name={stock.data.ticker}
+                                openPrice={stock.info.o}
+                                volume={stock.data.shares}
+                                price={stock.info.c}
+                            />
+                        ))}
                     </div>
                 </div>
                 <div className="stats__header">
-                    <p>Lists</p>
+                <p>Lists</p>
                 </div>
                 <div className="stats__content">
-                    <div className="stats__row">
-                        {stockData.map((stock) =>(
-                            <StatsRow
-                                key={stock.name}
-                                name={stock.name}
-                                openPrice={stock.o}
-                                price={stock.c}
-                            />
-                        ))}
+                <div className="stats__row">
+                    {stockData.map((stock) => (
+                    <StatsRow
+                    key={stock.name}
+                    name={stock.name}
+                    openPrice={stock.o}
+                    price={stock.c}
+                />
+                ))}
                     </div>
                 </div>
             </div>
