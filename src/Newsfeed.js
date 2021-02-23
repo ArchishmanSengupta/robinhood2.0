@@ -22,6 +22,13 @@ function Newsfeed() {
                     <h2>Buying Power</h2>
                     <h2>$5.56</h2>
                 </div>
+                <div className="newsfeed__market__section">
+                    <div className="newsfeed__market__box">
+                        <p>Market Closed</p>
+                        <h1>Happy Thanksgiving</h1>
+                    </div>
+
+                </div>
             </div>
             
         </div>
