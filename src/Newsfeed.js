@@ -18,6 +18,10 @@ function Newsfeed() {
                         <TimeLine/>
                     </div>
                 </div>
+                <div className="newsfeed__buying__section">
+                    <h2>Buying Power</h2>
+                    <h2>$5.56</h2>
+                </div>
             </div>
             
         </div>
